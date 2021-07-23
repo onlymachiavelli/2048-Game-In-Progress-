@@ -104,6 +104,10 @@ int main(){
       cin >> ex;
       if(ex == 'n' ) break;
       else {
+        cout << "Resize  ? y/n" << endl;
+        char res;
+        cin >> res;
+        if (res == 'y') cin >> size;
         GenerateGame(game, size);
         Show(game, size);
       }
