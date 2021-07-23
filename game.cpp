@@ -1,80 +1,38 @@
 #include <bits/stdc++.h>
 using namespace std;
-bool isFull(vector<vector<int>> matrix, int size)
-{
-    int count = 0;
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
-        {
-            if (matrix[i][j] != 0)
-                count++;
-        }
-    }
-    if (count == (size * size))
-        return false;
-    else
-        return true;
+void Show(vector <vector<int>> matr, int size) {
+  int i,j;
+  for (i = 0; i< size; i++){
+    for (j = 0; j< size;j++) cout << matr[i][j] << "  "  ;
+    cout << endl;
+  }
 }
-void Show(vector<vector<int>> matrix, int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
-            cout << matrix[i][j] << " ";
-        cout << endl;
-    }
-}
-void GenerateGame(vector<vector<int>> matrix, int size)
-{
-    int i, j;
-    vector<int> line;
-    for (i = 0; i < size; i++)
-    {
-        for (j = 0; j < size; j++)
-            line.push_back(0);
-        matrix.push_back(line);
-        line = {};
-    }
-    int x, y;
-    int arr[4] = {0, 0};
-    int checkn = 0;
-    do
-    {
-        x = rand() % size;
-        y = rand() % size;
-        while (x == y)
-            y = rand() % size;
-        if (checkn == 0)
-        {
-            arr[0] = x;
-            arr[1] = y;
-        }
-        if (checkn == 1)
-        {
-            do
-            {
-                x = rand() % size;
-                y = rand() % size;
-                while (x == y)
-                    y = rand() % size;
-            } while (arr[0] == x || arr[1] == y);
-        }
-        else
-        {
-            matrix[x][y] = 2;
-        }
-        checkn++;
+void GenerateGame(vector<vector<int>>& matr, int size) {
+  int i,j;
+  for (i = 0; i< size; i++) for (j = 0 ; j < size; j ++ ) matr[i][j] = 0;
+  srand(time(0));
+  int arr[4];
+  for (i = 0; i < 4;i++ ) arr[i] = rand() % size;
+  while (arr[0] == arr[1]) arr[0] = rand() % size;
+  while (arr[2] == arr[3]) arr[2] = rand() % size;
+  matr[arr[0]][arr[2]] = 2;
+  matr[arr[1]][arr[3]] = 2;
 
-    } while (checkn != 2);
 }
-int main(void)
-{
-    int i, j;
-    int size;
-    vector<vector<int>> game;
-    cout << "Enter The Size : " << endl;
-    cin >> size;
-    GenerateGame(game, size);
-    Show(game, size);
+bool isFull (vector<vector <int>> matr , int size){
+    int count = 0;
+    for (int i = 0; i < size; i++) for (int j = 0; j < size; j++) if (matr[i][j] != 0) count++;
+    if (count == (size * size)) return true;
+    else return false;
 }
+
+int main(){
+  cout << "2048 Game C++ Version By @Machiavelli " << endl << "Enter the size ";
+  int size;
+  cin >> size;
+  vector <vector <int>> game (size, vector<int>(size));
+  GenerateGame(game, size);
+  Show(game, size);
+}
+
+
