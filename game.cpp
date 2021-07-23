@@ -26,6 +26,30 @@ bool isFull (vector<vector <int>> matr , int size){
     else return false;
 }
 
+void AddNum(vector<vector<int>> & matr, int size){
+  // To add a number in any index IJ after sliding  !
+
+}
+void Right(vector <vector<int>> & matr, int size) {
+  //Right function
+  int i, j;
+  for (i = 0; i<size;i++) for(j = 0; j<size;j++){
+    
+  }
+}
+
+
+void Left(vector <vector<int>> & matr, int size) {
+  //left function
+}
+
+void Up(vector <vector<int>> & matr, int size) {
+  //up function
+}
+
+void Down(vector <vector<int>> & matr, int size) {
+  //down function
+}
 int main(){
   cout << "2048 Game C++ Version By @Machiavelli " << endl << "Enter the size ";
   int size;
