@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool CheckIn(string an) {
-  string arr[4] = {"r","d","l","u"};
+bool CheckIn(char an) {
+  char arr[4] = {'r','d','l','u'};
   int i;
   for (i= 0;i<4;i++) if (arr[i] == an) return true;
   return false;
@@ -72,7 +72,7 @@ int main(){
   vector <vector <int>> game (size, vector<int>(size));
   GenerateGame(game, size);
   Show(game, size);
-  string answer;
+  char answer;
   while (true){
     cout << "Choose a direction : r(right), l(left), u(up), d(down) " << endl;
     cin >> answer;
@@ -81,6 +81,13 @@ int main(){
       cin >> answer;
     }
     while (!CheckIn(answer));
+
+    switch(answer){
+      case 'r':
+        Right(game, size);
+        break;
+  
+    }
   }
 }
 
