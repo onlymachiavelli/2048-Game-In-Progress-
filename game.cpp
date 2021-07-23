@@ -4,6 +4,7 @@ using namespace std;
 bool CheckIn(char an) {
   char arr[4] = {'r','d','l','u'};
   int i;
+  bool check = false;
   for (i= 0;i<4;i++) if (arr[i] == an) return true;
   return false;
   
@@ -79,15 +80,30 @@ int main(){
     do {
       cout << "Enter the fucking answer again mother fucker ! r,u,d,l" << endl;
       cin >> answer;
-    }
-    while (!CheckIn(answer));
+    }while (!CheckIn(answer));
 
     switch(answer){
       case 'r':
         Right(game, size);
         break;
+      case 'd':
+        Down(game, size);
+        break;
+      case 'u':
+        Up(game, size);
+        break;
+      case 'l' : 
+        Left(game, size);
+        break;
   
     }
+    Show(game, size);
+
+
+
+
+    //exiting if the game is completed
+    if(isFull(game, size)) break;
   }
 }
 
