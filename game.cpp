@@ -1,5 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
+
+bool CheckIn(string an) {
+  string arr[4] = {"r","d","l","u"};
+  int i;
+  for (i= 0;i<4;i++) if (arr[i] == an) return true;
+  return false;
+  
+}
 void Show(vector <vector<int>> matr, int size) {
   int i,j;
   for (i = 0; i< size; i++){
@@ -33,8 +41,15 @@ void AddNum(vector<vector<int>> & matr, int size){
 void Right(vector <vector<int>> & matr, int size) {
   //Right function
   int i, j;
-  for (i = 0; i<size;i++) for(j = 0; j<size;j++){
-    
+  for (i = 0; i<size;i++) for(j = 0; j<size-1;j++){
+    if (matr[i][j] == matr[i][j+1]){
+      matr[i][j] = matr[i][j] * 2 ;
+      matr[i][j+1] = 0;
+    }
+    if (matr[i][j] == 0 && matr[i][j+1] != 0) {
+      matr[i][j] = matr[i][j+1];
+      matr[i][j+1] = 0;
+    }
   }
 }
 
@@ -57,6 +72,16 @@ int main(){
   vector <vector <int>> game (size, vector<int>(size));
   GenerateGame(game, size);
   Show(game, size);
+  string answer;
+  while (true){
+    cout << "Choose a direction : r(right), l(left), u(up), d(down) " << endl;
+    cin >> answer;
+    do {
+      cout << "Enter the fucking answer again mother fucker ! r,u,d,l" << endl;
+      cin >> answer;
+    }
+    while (!CheckIn(answer));
+  }
 }
 
 
