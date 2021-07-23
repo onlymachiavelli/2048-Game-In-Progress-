@@ -95,15 +95,19 @@ int main(){
       case 'l' : 
         Left(game, size);
         break;
-  
     }
     Show(game, size);
-
-
-
-
     //exiting if the game is completed
-    if(isFull(game, size)) break;
+    if(isFull(game, size)){
+      cout << "Game is over ! Would you like to play again ? y/n " << endl;
+      char ex ; 
+      cin >> ex;
+      if(ex == 'n' ) break;
+      else {
+        GenerateGame(game, size);
+        Show(game, size);
+      }
+    }
   }
 }
 
