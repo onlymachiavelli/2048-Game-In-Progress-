@@ -39,7 +39,7 @@ void AddNum(vector<vector<int>> & matr, int size){
   // To add a number in any index IJ after sliding  !
 
 }
-void Right(vector <vector<int>> & matr, int size) {
+void Left(vector <vector<int>> & matr, int size) {
   //Right function
   int i, j;
   for (i = 0; i<size;i++) for(j = 0; j<size-1;j++){
@@ -55,8 +55,22 @@ void Right(vector <vector<int>> & matr, int size) {
 }
 
 
-void Left(vector <vector<int>> & matr, int size) {
-  //left function
+void Right(vector <vector<int>> & matr, int size) {
+  int i, j = size-1;
+  for (i= 0; i< size;i++) while (j--){
+    //left Function
+    if (matr[i][j] == matr[i][j-1]){
+      matr[i][j] = matr[i][j] *2;
+      matr[i][j-1] = 0; 
+    }
+    if (matr[i][j] == 0 && matr[i][j-1] != 0) {
+      matr[i][j] = matr[i][j-1];
+      matr[i][j-1] = 0;
+    }
+    if(j == 1) break;
+
+  }
+  
 }
 
 void Up(vector <vector<int>> & matr, int size) {
