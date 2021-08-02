@@ -186,6 +186,17 @@ bool isFull(vector<vector<int>> mt, int size)
   }
   return true;
 }
+void RandomAdd(vector<vector<int>> &mt, int size)
+{
+  srand(time(0));
+  int x = rand() % size, y = rand() % size;
+  while (mt[x][y] != 0)
+  {
+    x = rand() % size;
+    y = rand() % size;
+  }
+  mt[x][y] = 2;
+}
 int main()
 {
   cout << "Enter size " << endl;
@@ -194,7 +205,11 @@ int main()
   vector<vector<int>> Game(size, vector<int>(size));
   GenerateGame(Game, size);
   Show(Game, size);
-  Top(Game, size);
+  RandomAdd(Game, size);
   cout << endl;
+  Show(Game, size);
+  RandomAdd(Game, size);
+  Show(Game, size);
+  Right(Game, size);
   Show(Game, size);
 }
