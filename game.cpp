@@ -69,7 +69,6 @@ void Right(vector<vector<int>> &mt, int size)
   {
     for (j = size - 1; j >= 1; j--)
     {
-      cout << "Im okay";
       if (mt[i][j] == mt[i][j - 1])
       {
         mt[i][j] *= 2;
@@ -83,13 +82,12 @@ void Right(vector<vector<int>> &mt, int size)
     nready = false; //means its ready no zeros
     for (i = 0; i < size; i++)
     {
-      for (j = size - 1; j >= 1; j++)
+      for (j = size - 1; j >= 1; j--)
       {
         if (mt[i][j] == 0 && mt[i][j - 1] != 0)
         {
           mt[i][j] = mt[i][j - 1];
           mt[i][j - 1] = 0;
-
           nready = true;
         }
       }
