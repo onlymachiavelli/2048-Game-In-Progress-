@@ -34,7 +34,7 @@ void Left(vector<vector<int>> &mt, int size)
   int i, j;
   for (i = 0; j < size; j++)
   {
-    for (j = 0; i < size; i++)
+    for (j = 0; i < size - 1; i++)
     {
       if (mt[i][j] == mt[i][j + 1])
       {
@@ -46,7 +46,7 @@ void Left(vector<vector<int>> &mt, int size)
 
   for (i = 0; i < size; i++)
   {
-    for (j = 0; j < size; j++)
+    for (j = 0; j < size - 1; j++)
     {
       if (mt[i][j] == 0 && mt[i][j + 1] != 0)
       {
