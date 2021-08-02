@@ -31,7 +31,6 @@ void GenerateGame(vector<vector<int>> &matr, int size)
 void Left(vector<vector<int>> &mt, int size)
 {
   int i, j;
-  bool nready = true;
   for (i = 0; j < size; j++)
   {
     for (j = 0; i < size; i++)
@@ -43,19 +42,16 @@ void Left(vector<vector<int>> &mt, int size)
       }
     }
   }
-  while (nready)
+
+  for (i = 0; i < size; i++)
   {
-    nready = false; //means its ready no zeros
-    for (i = 0; i < size; i++)
+    for (j = 0; j < size; j++)
     {
-      for (j = 0; j < size; j++)
+      if (mt[i][j] == 0 && mt[i][j + 1] != 0)
       {
-        if (mt[i][j] == 0 && mt[i][j + 1] != 0)
-        {
-          mt[i][j] = mt[i][j + 1];
-          mt[i][j + 1] = 0;
-          nready = true;
-        }
+        mt[i][j] = mt[i][j + 1];
+        mt[i][j + 1] = 0;
+        Left(mt, size);
       }
     }
   }
@@ -64,7 +60,6 @@ void Left(vector<vector<int>> &mt, int size)
 void Right(vector<vector<int>> &mt, int size)
 {
   int i, j;
-  bool nready = true;
   for (i = 0; i < size; i++)
   {
     for (j = size - 1; j >= 1; j--)
@@ -77,19 +72,15 @@ void Right(vector<vector<int>> &mt, int size)
     }
   }
 
-  while (nready)
+  for (i = 0; i < size; i++)
   {
-    nready = false; //means its ready no zeros
-    for (i = 0; i < size; i++)
+    for (j = size - 1; j >= 1; j--)
     {
-      for (j = size - 1; j >= 1; j--)
+      if (mt[i][j] == 0 && mt[i][j - 1] != 0)
       {
-        if (mt[i][j] == 0 && mt[i][j - 1] != 0)
-        {
-          mt[i][j] = mt[i][j - 1];
-          mt[i][j - 1] = 0;
-          nready = true;
-        }
+        mt[i][j] = mt[i][j - 1];
+        mt[i][j - 1] = 0;
+        Right(mt, size);
       }
     }
   }
@@ -98,7 +89,6 @@ void Right(vector<vector<int>> &mt, int size)
 void Bottom(vector<vector<int>> &mt, int size)
 {
   int i, j; //i rows , j elements
-  bool nready = true;
   for (j = 0; j < size; j++)
   {
     for (i = size - 1; i >= 1; i--)
@@ -110,32 +100,24 @@ void Bottom(vector<vector<int>> &mt, int size)
       }
     }
   }
-  while (nready)
+
+  for (j = 0; j < size; j++)
   {
-    nready = false;
-    for (j = 0; j < size; j++)
+    for (i = size - 1; i >= 1; i--)
     {
-      for (i = size - 1; i >= 1; i--)
+      if (mt[i][j] == 0 && mt[i - 1][j] != 0)
       {
-        if (mt[i][j] == 0 && mt[i - 1][j] != 0)
-        {
-          mt[i][j] = mt[i - 1][j];
-          mt[i - 1][j] = 0;
-          nready = true;
-        }
+        mt[i][j] = mt[i - 1][j];
+        mt[i - 1][j] = 0;
+        Bottom(mt, size);
       }
     }
   }
 }
 
-/*
-        mt[i][j] *= 2;
-        mt[i][j + 1] = 0;
-*/
 void Top(vector<vector<int>> &mt, int size)
 {
   int i, j;
-  bool nready = true;
   for (j = 0; j < size; j++)
   {
     for (i = 0; i < size - 1; i++)
@@ -148,19 +130,15 @@ void Top(vector<vector<int>> &mt, int size)
     }
   }
 
-  while (nready)
+  for (j = 0; j < size; j++)
   {
-    nready = false;
-    for (j = 0; j < size; j++)
+    for (i = 0; i < size - 1; i++)
     {
-      for (i = 0; i < size - 1; i++)
+      if (mt[i][j] == 0 && mt[i + 1][j] != 0)
       {
-        if (mt[i][j] == 0 && mt[i + 1][j] != 0)
-        {
-          mt[i][j] = mt[i + 1][j];
-          mt[i + 1][j] = 0;
-          nready = true;
-        }
+        mt[i][j] = mt[i + 1][j];
+        mt[i + 1][j] = 0;
+        Top(mt, size);
       }
     }
   }
@@ -205,11 +183,10 @@ int main()
   vector<vector<int>> Game(size, vector<int>(size));
   GenerateGame(Game, size);
   Show(Game, size);
-  RandomAdd(Game, size);
-  cout << endl;
-  Show(Game, size);
-  RandomAdd(Game, size);
-  Show(Game, size);
-  Right(Game, size);
-  Show(Game, size);
+  char answer;
+  while (1)
+  {
+    cout << "t:Top, r:right, l:left, b:bottom" << endl;
+    cin >> answer;
+    }
 }
