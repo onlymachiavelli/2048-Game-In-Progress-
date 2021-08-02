@@ -9,6 +9,7 @@ void Show(vector<vector<int>> mt, int size)
       cout << mt[i][j] << " ";
     cout << endl;
   }
+  cout << endl;
 }
 
 void GenerateGame(vector<vector<int>> &matr, int size)
@@ -188,5 +189,47 @@ int main()
   {
     cout << "t:Top, r:right, l:left, b:bottom" << endl;
     cin >> answer;
+    switch (answer)
+    {
+    case 't':
+      Top(Game, size);
+      cout << "Top" << endl;
+      break;
+    case 'r':
+      Right(Game, size);
+      cout << "Right" << endl;
+      break;
+    case 'l':
+      Left(Game, size);
+      cout << "Left" << endl;
+      break;
+    case 'b':
+      Bottom(Game, size);
+      cout << "Bottom" << endl;
+      break;
     }
+    RandomAdd(Game, size);
+    Show(Game, size);
+    if (!isFull)
+    {
+      cout << "Game is over ! Play again ? y/n" << endl;
+      cin >> answer;
+      if (answer == 'n')
+      {
+        cout << "Bye mother fucker !" << endl;
+        break;
+      }
+      else
+      {
+        cout << "Resize ?" << endl;
+        cin >> answer;
+        if (answer == 'y')
+        {
+          cin >> size;
+        }
+        vector<vector<int>> Game(size, vector<int>(size));
+        GenerateGame(Game, size);
+      }
+    }
+  }
 }
