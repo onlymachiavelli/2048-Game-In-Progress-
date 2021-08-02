@@ -127,6 +127,44 @@ void Bottom(vector<vector<int>> &mt, int size)
     }
   }
 }
+
+/*
+        mt[i][j] *= 2;
+        mt[i][j + 1] = 0;
+*/
+void Top(vector<vector<int>> &mt, int size)
+{
+  int i, j;
+  bool nready = true;
+  for (j = 0; j < size; j++)
+  {
+    for (i = 0; i < size - 1; i++)
+    {
+      if (mt[i][j] == mt[i + 1][j])
+      {
+        mt[i][j] *= 2;
+        mt[i + 1][j] = 0;
+      }
+    }
+  }
+
+  while (nready)
+  {
+    nready = false;
+    for (j = 0; j < size; j++)
+    {
+      for (i = 0; i < size - 1; i++)
+      {
+        if (mt[i][j] == 0 && mt[i + 1][j] != 0)
+        {
+          mt[i][j] = mt[i + 1][j];
+          mt[i + 1][j] = 0;
+          nready = true;
+        }
+      }
+    }
+  }
+}
 int main()
 {
   cout << "Enter size " << endl;
@@ -135,7 +173,7 @@ int main()
   vector<vector<int>> Game(size, vector<int>(size));
   GenerateGame(Game, size);
   Show(Game, size);
-  Bottom(Game, size);
+  Top(Game, size);
   cout << endl;
   Show(Game, size);
 }
