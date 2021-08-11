@@ -29,6 +29,23 @@ void GenerateGame(vector<vector<int>> &matr, int size)
   matr[arr[0]][arr[2]] = 2;
   matr[arr[1]][arr[3]] = 2;
 }
+
+void Zleft(vector<vector<int>> &mt, int size)
+{
+  int i, j;
+  for (i = 0; i < size; i++)
+  {
+    for (j = 0; j < size - 1; j++)
+    {
+      if (mt[i][j] == 0 && mt[i][j + 1] != 0)
+      {
+        mt[i][j] = mt[i][j + 1];
+        mt[i][j + 1] = 0;
+        Zleft(mt, size);
+      }
+    }
+  }
+}
 void Left(vector<vector<int>> &mt, int size)
 {
   int i, j;
@@ -44,15 +61,21 @@ void Left(vector<vector<int>> &mt, int size)
     }
   }
 
+  Zleft(mt, size);
+}
+
+void Zright(vector<vector<int>> &mt, int size)
+{
+  int i, j;
   for (i = 0; i < size; i++)
   {
-    for (j = 0; j < size - 1; j++)
+    for (j = size - 1; j >= 1; j--)
     {
-      if (mt[i][j] == 0 && mt[i][j + 1] != 0)
+      if (mt[i][j] == 0 && mt[i][j - 1] != 0)
       {
-        mt[i][j] = mt[i][j + 1];
-        mt[i][j + 1] = 0;
-        Left(mt, size);
+        mt[i][j] = mt[i][j - 1];
+        mt[i][j - 1] = 0;
+        zright(mt, size);
       }
     }
   }
@@ -72,21 +95,24 @@ void Right(vector<vector<int>> &mt, int size)
       }
     }
   }
+  Zright(mt, size);
+}
 
-  for (i = 0; i < size; i++)
+void Zbottom(vector<vector<int>> &mt, int size)
+{
+  for (j = 0; j < size; j++)
   {
-    for (j = size - 1; j >= 1; j--)
+    for (i = size - 1; i >= 1; i--)
     {
-      if (mt[i][j] == 0 && mt[i][j - 1] != 0)
+      if (mt[i][j] == 0 && mt[i - 1][j] != 0)
       {
-        mt[i][j] = mt[i][j - 1];
-        mt[i][j - 1] = 0;
-        Right(mt, size);
+        mt[i][j] = mt[i - 1][j];
+        mt[i - 1][j] = 0;
+        Zbottom(mt, size);
       }
     }
   }
 }
-
 void Bottom(vector<vector<int>> &mt, int size)
 {
   int i, j; //i rows , j elements
@@ -102,20 +128,25 @@ void Bottom(vector<vector<int>> &mt, int size)
     }
   }
 
+  Zbottom(mt, size);
+}
+
+void Ztop(vector<verctor<int>> &mt, int size)
+{
+  int i, j;
   for (j = 0; j < size; j++)
   {
-    for (i = size - 1; i >= 1; i--)
+    for (i = 0; i < size - 1; i++)
     {
-      if (mt[i][j] == 0 && mt[i - 1][j] != 0)
+      if (mt[i][j] == 0 && mt[i + 1][j] != 0)
       {
-        mt[i][j] = mt[i - 1][j];
-        mt[i - 1][j] = 0;
-        Bottom(mt, size);
+        mt[i][j] = mt[i + 1][j];
+        mt[i + 1][j] = 0;
+        Ztop(mt, size);
       }
     }
   }
 }
-
 void Top(vector<vector<int>> &mt, int size)
 {
   int i, j;
@@ -131,18 +162,7 @@ void Top(vector<vector<int>> &mt, int size)
     }
   }
 
-  for (j = 0; j < size; j++)
-  {
-    for (i = 0; i < size - 1; i++)
-    {
-      if (mt[i][j] == 0 && mt[i + 1][j] != 0)
-      {
-        mt[i][j] = mt[i + 1][j];
-        mt[i + 1][j] = 0;
-        Top(mt, size);
-      }
-    }
-  }
+  Ztop(mt, size);
 }
 bool isFull(vector<vector<int>> mt, int size)
 {
