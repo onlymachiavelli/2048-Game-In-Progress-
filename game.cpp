@@ -75,7 +75,7 @@ void Zright(vector<vector<int>> &mt, int size)
       {
         mt[i][j] = mt[i][j - 1];
         mt[i][j - 1] = 0;
-        zright(mt, size);
+        Zright(mt, size);
       }
     }
   }
@@ -100,6 +100,7 @@ void Right(vector<vector<int>> &mt, int size)
 
 void Zbottom(vector<vector<int>> &mt, int size)
 {
+  int i, j;
   for (j = 0; j < size; j++)
   {
     for (i = size - 1; i >= 1; i--)
@@ -131,7 +132,7 @@ void Bottom(vector<vector<int>> &mt, int size)
   Zbottom(mt, size);
 }
 
-void Ztop(vector<verctor<int>> &mt, int size)
+void Ztop(vector<vector<int>> &mt, int size)
 {
   int i, j;
   for (j = 0; j < size; j++)
