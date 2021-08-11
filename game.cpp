@@ -205,7 +205,7 @@ int main()
   GenerateGame(Game, size);
   Show(Game, size);
   char answer;
-  while (1)
+  while (true)
   {
     cout << "t:Top, r:right, l:left, b:bottom" << endl;
     cin >> answer;
@@ -230,7 +230,7 @@ int main()
     }
     RandomAdd(Game, size);
     Show(Game, size);
-    if (!isFull)
+    if (!isFull(Game, size))
     {
       cout << "Game is over ! Play again ? y/n" << endl;
       cin >> answer;
