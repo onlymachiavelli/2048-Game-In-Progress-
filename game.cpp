@@ -231,7 +231,7 @@ int main()
     }
     RandomAdd(Game, size);
     Show(Game, size);
-    if (!isFull(Game, size))
+    if (isFull(Game, size))
     {
       cout << "Game is over ! Play again ? y/n" << endl;
       cin >> answer;
